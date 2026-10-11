@@ -20,7 +20,7 @@
 </header>
 <div class="layout">
   <main>
-    <div class="toc"><div class="toc-title">Table of Contents</div><ul><li class="toc-1"><a href="#cest-sources">CEST sources</a></li><li class="toc-3"><a href="#overview">Overview</a></li><li class="toc-2"><a href="#data-evaluation-tools">1. Data evaluation tools</a></li><li class="toc-3"><a href="#image-data-preprocessing-normalization-b0-correction-lorentzian-fitting-and-contrast-computation">1.1 Image data preprocessing - Normalization, B0 correction, Lorentzian fitting, and contrast computation</a></li><li class="toc-3"><a href="#z-spectra-b1-correction">1.2 Z-spectra B1-correction</a></li><li class="toc-2"><a href="#analytical-solutions-of-the-bloch-mcconnell-equations">2. Analytical solutions of the Bloch-McConnell equations</a></li><li class="toc-2"><a href="#full-numerical-solutions-of-the-bloch-mcconnell-equations">3. Full numerical solutions of the Bloch-McConnell equations</a></li><li class="toc-2"><a href="#quantitative-cest">4. Quantitative CEST</a></li><li class="toc-2"><a href="#cest-theory">5. CEST Theory</a></li><li class="toc-2"><a href="#standard-cest-protocols">6. standard CEST protocols</a></li><li class="toc-2"><a href="#literature">7. Literature</a></li></ul></div>
+    <div class="toc"><div class="toc-title">Table of Contents</div><ul><li class="toc-1"><a href="#cest-sources">CEST sources</a></li><li class="toc-3"><a href="#overview">Overview</a></li><li class="toc-2"><a href="#data-evaluation-tools">1. Data evaluation tools</a></li><li class="toc-3"><a href="#image-data-preprocessing-normalization-b0-correction-lorentzian-fitting-and-contrast-computation">1.1 Image data preprocessing - Normalization, B0 correction, Lorentzian fitting, and contrast computation</a></li><li class="toc-3"><a href="#z-spectra-b1-correction">1.2 Z-spectra B1-correction</a></li><li class="toc-3"><a href="#pulseq-cest-evaluation-examples">1.3 Pulseq-CEST evaluation examples</a></li><li class="toc-2"><a href="#analytical-solutions-of-the-bloch-mcconnell-equations">2. Analytical solutions of the Bloch-McConnell equations</a></li><li class="toc-2"><a href="#full-numerical-solutions-of-the-bloch-mcconnell-equations">3. Full numerical solutions of the Bloch-McConnell equations</a></li><li class="toc-3"><a href="#full-numerical-bloch-mcconnell-solution">3.1 Full numerical Bloch-McConnell solution</a></li><li class="toc-3"><a href="#pulseq-cest">3.2 Pulseq-CEST</a></li><li class="toc-2"><a href="#quantitative-cest">4. Quantitative CEST</a></li><li class="toc-2"><a href="#cest-theory">5. CEST Theory</a></li><li class="toc-2"><a href="#standard-cest-protocols">6. standard CEST protocols</a></li><li class="toc-2"><a href="#cestineers-cest-on-a-siemens-platform">7. CESTineers - CEST on a Siemens platform</a></li><li class="toc-2"><a href="#literature">8. Literature</a></li></ul></div>
     <article><h1 id="cest-sources">CEST sources</h1>
 <p>Welcome to <em>CEST sources</em>! CEST stands for Chemical Exchange Saturation Transfer, a Magnetic Resonance Imaging (<a class="urlextern" href="http://en.wikipedia.org/wiki/MRI">MRI</a>) technique which promises insight into pathologies on a molecular level. If you want to know more about CEST, find details in the <a class="wikilink" href="cest_intro.html">CEST intro</a> or <a class="wikilink" href="the_reviews.html">the reviews</a>. <em>CEST sources</em> is a project to share code, link resources, and bundle knowledge about CEST. <em>CEST sources</em> is intended for helping researchers and students in the field of CEST and magnetization transfer. Most code is in Matlab but we try to upload other implementations, too.</p>
 <h3 id="overview">Overview</h3>
@@ -31,13 +31,18 @@
 <p><img src="media/cest_eval.png" alt="" width="200"> <a class="wikilink" href="cest_eval.html">CEST data evaluation tool</a></p>
 <h3 id="z-spectra-b1-correction">1.2 Z-spectra B1-correction</h3>
 <p><img src="media/b1_corr.png" alt="" width="200"><a class="wikilink" href="b1-correction.html">Correction for B1 inhomogeneity artifacts in CEST images</a></p>
+<h3 id="pulseq-cest-evaluation-examples">1.3 Pulseq-CEST evaluation examples</h3>
+<p>The Pulseq-CEST library shares short MATLAB and Python scripts that evaluate data from a matching Pulseq-CEST sequence, including MTRasym, multi-pool Lorentzian difference, T1, T2, and WASABI. The scripts are in <a class="urlextern" href="https://github.com/kherz/pulseq-cest-library/tree/master/eval-examples">eval-examples</a>. The library and these evaluations are described in <a class="urlextern" href="https://link.springer.com/article/10.1007/s10334-025-01242-6">The Pulseq-CEST Library: definition of preparations and simulations, example data, and example evaluations</a>.</p>
 <h2 id="analytical-solutions-of-the-bloch-mcconnell-equations">2. Analytical solutions of the Bloch-McConnell equations</h2>
 <p>Here you find Z-spectrum simulations in the case of a two and three pool systems under continuous wave (cw) irradiation. For a two pool system also the solution for pulsed spinlock irradiation is given.</p>
 <p><img src="media/z_cw_b1.png" alt="" width="160"><a class="wikilink" href="analytic_z-spectra-cw-2pool.html">Analytical solution for 2-pools under cw irradiation</a></p>
 <p><img src="media/z_cw_b1_mt.png" alt="" width="160"> <a class="wikilink" href="analytic_z-spectra-cw-3pool.html">Analytical solution for 3-pools under cw irradiation: water, CEST and semi-solid MT</a></p>
 <p><img src="media/z_plsd_b1.png" alt="" width="160"> <a class="wikilink" href="analytic_z-spectra_-_pulsed_sl.html">Analytical solution for 2-pools under pulsed spin-lock irradiation (ISAR2)</a></p>
 <h2 id="full-numerical-solutions-of-the-bloch-mcconnell-equations">3. Full numerical solutions of the Bloch-McConnell equations</h2>
+<h3 id="full-numerical-bloch-mcconnell-solution">3.1 Full numerical Bloch-McConnell solution</h3>
 <p><img src="media/bm.png" alt="" width="250"><a class="wikilink" href="bm_sim_fit.html">Full numerical Bloch-McConnell solution</a></p>
+<h3 id="pulseq-cest">3.2 Pulseq-CEST</h3>
+<p><a class="urlextern" href="https://pulseq-cest.github.io/">Pulseq-CEST</a> has simulation codes integrated and linked on the project site.</p>
 <h2 id="quantitative-cest">4. Quantitative CEST</h2>
 <p>Here you find methods for CEST quantification. This means to achieve access to the CEST pool parameters as defined in the Bloch-McConnell equations such as exchange rate, concentration and transverse relaxation of the CEST site.</p>
 <p><img src="media/b1fit.png" alt="" width="160"><a class="wikilink" href="multi-b1-fit-cw.html">CEST quantification by a Multi-B1-fit under cw irradiation - 2 pools</a></p>
@@ -46,7 +51,9 @@
 <p><img src="media/bm.png" alt="" width="250"><a class="wikilink" href="bloch-mcconnell-theory.html">Bloch, Bloch-McConnell, and CEST-Theory</a></p>
 <h2 id="standard-cest-protocols">6. standard CEST protocols</h2>
 <p>For reproducible CEST we need to agree on some standard protocols. Find a collection of used sequences here. <a class="wikilink" href="standard_cest_protocols.html">standard CEST protocols</a></p>
-<h2 id="literature">7. Literature</h2>
+<h2 id="cestineers-cest-on-a-siemens-platform">7. CESTineers - CEST on a Siemens platform</h2>
+<p><a class="urlextern" href="https://github.com/cest-sources/cestineers">CESTineers</a> is a resource for CEST MRI on a Siemens platform: available sequences, tested protocols, and notes on post-processing.</p>
+<h2 id="literature">8. Literature</h2>
 <p><a class="wikilink" href="cest_intro.html">CEST intro</a></p>
 <p><a class="wikilink" href="the_reviews.html">the reviews</a></p>
 <p><a class="wikilink" href="glucocest.html">glucoCEST</a></p>
