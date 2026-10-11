@@ -13,7 +13,7 @@ PAGES = ROOT / "backups" / "2026-10-11" / "cest-sources.org" / "htdocs" / "data"
 MEDIA = ROOT / "backups" / "2026-10-11" / "cest-sources.org" / "htdocs" / "data" / "media"
 OUT = Path(__file__).resolve().parent
 SKIP = {"wiki", "playground"}
-CONTACT = "moritz.zaiss@tuebingen.mpg.de"
+CONTACT = "moritz.zaiss@fau.de"
 
 HEADING = re.compile(r"^(={2,6})\s*(.*?)\s*={2,6}\s*$")
 LIST_ITEM = re.compile(r"^(\s{2,})([*-])\s+(.*)$")
@@ -419,7 +419,7 @@ header {
   color: #fff;
   padding: 0.55rem 1.4rem;
 }
-.brand img { height: 74px; width: auto; display: block; background: #e7f4fb; }
+.brand img { max-width: 100px; max-height: 100px; width: auto; height: auto; display: block; background: #e7f4fb; }
 .tag { color: #d5e2f0; font-size: 0.95rem; }
 .layout { display: flex; align-items: flex-start; gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 1.2rem; }
 nav { width: 320px; flex: none; background: var(--paper); border: 1px solid var(--border); padding: 0.8rem 1rem 0.8rem 0.6rem; }
