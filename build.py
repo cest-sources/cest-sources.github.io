@@ -216,7 +216,8 @@ class Renderer:
             rows = []
             for level, anchor, label in toc:
                 rows.append(f'<li class="toc-{level}"><a href="#{anchor}">{label}</a></li>')
-            toc_html = '<div class="toc"><div class="toc-title">Table of Contents</div><ul>' + "".join(rows) + "</ul></div>"
+            home = "" if page_id == "start" else '<p class="toc-home"><a href="index.html">Back to CEST sources</a></p>'
+            toc_html = f'<div class="toc">{home}<div class="toc-title">Table of Contents</div><ul>' + "".join(rows) + "</ul></div>"
         body_html = "\n".join(rendered)
         has_heading = any(kind[:1] == "h" and kind[1:].isdigit() for kind, _ in blocks)
         if not has_heading:
@@ -357,7 +358,7 @@ class Renderer:
         return label_html
 
 
-def page_template(title: str, toc: str, body: str, nav: str) -> str:
+def page_template(title: str, toc: str, body: str) -> str:
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -372,7 +373,6 @@ def page_template(title: str, toc: str, body: str, nav: str) -> str:
   <span class="tag">Chemical Exchange Saturation Transfer</span>
 </header>
 <div class="layout">
-  <nav>{nav}</nav>
   <main>
     {toc}
     <article>{body}</article>
@@ -421,14 +421,8 @@ header {
 }
 .brand img { max-width: 100px; max-height: 100px; width: auto; height: auto; display: block; background: #e7f4fb; }
 .tag { color: #d5e2f0; font-size: 0.95rem; }
-.layout { display: flex; align-items: flex-start; gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 1.2rem; }
-nav { width: 320px; flex: none; background: var(--paper); border: 1px solid var(--border); padding: 0.8rem 1rem 0.8rem 0.6rem; }
-nav ul { margin: 0; padding-left: 1.35rem; }
-nav li { margin: 0.28rem 0; }
-nav a { color: var(--wiki); text-decoration: none; }
-nav a:hover, nav a.current { text-decoration: underline; }
-nav a.current { font-weight: 600; }
-main { flex: 1; min-width: 0; background: var(--paper); border: 1px solid var(--border); padding: 1rem 1.4rem 2rem; }
+.layout { max-width: 920px; margin: 0 auto; padding: 1.2rem; }
+main { min-width: 0; background: var(--paper); border: 1px solid var(--border); padding: 1rem 1.4rem 2rem; }
 h1, h2, h3, h4, h5 { color: #19477a; line-height: 1.3; font-weight: 600; }
 h1 { font-size: 1.7rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; }
 h2 { font-size: 1.35rem; }
@@ -437,6 +431,8 @@ a.wikilink { color: var(--wiki); }
 a.urlextern, a.interwiki, a.mail { color: var(--link); }
 .toc { float: right; width: 14rem; margin: 0 0 1rem 1rem; background: var(--alt); border: 1px solid var(--border); padding: 0.5rem 0.8rem; font-size: 0.86rem; }
 .toc-title { font-weight: 600; margin-bottom: 0.3rem; }
+.toc-home { margin: 0 0 0.45rem; }
+.toc-home a { color: var(--wiki); font-weight: 600; }
 .toc ul { list-style: none; margin: 0; padding: 0; }
 .toc a { color: var(--text); text-decoration: none; }
 .toc a:hover { text-decoration: underline; }
@@ -457,8 +453,6 @@ footer { background: #fff; border-top: 1px solid var(--border); padding: 1.1rem 
 .affiliation a { color: var(--link); text-decoration: none; }
 .affiliation a:hover { text-decoration: underline; }
 @media (max-width: 800px) {
-  .layout { display: block; }
-  nav { width: auto; margin-bottom: 1rem; }
   .toc { float: none; width: auto; }
   .affiliation { display: block; }
   .affiliation img { margin-bottom: 0.7rem; }
@@ -473,7 +467,6 @@ def main() -> None:
     for page_id, source in pages.items():
         rendered[page_id] = renderer.render_page(page_id, source)
 
-    nav_ids = ["start"] + sorted((page_id for page_id in pages if page_id != "start"), key=lambda item: rendered[item][0].lower())
     for old in OUT.glob("*.html"):
         old.unlink()
     media_out = OUT / "media"
@@ -484,11 +477,7 @@ def main() -> None:
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
 
     for page_id, (title, toc, body) in rendered.items():
-        links = []
-        for other in nav_ids:
-            current = ' class="current"' if other == page_id else ""
-            links.append(f"<li><a{current} href=\"{href_for(other)}\">{html.escape(rendered[other][0])}</a></li>")
-        html_page = page_template(title, toc, body, "<ul>\n" + "\n".join(links) + "\n</ul>")
+        html_page = page_template(title, toc, body)
         (OUT / href_for(page_id)).write_text(html_page, encoding="utf-8")
 
     targets = {href_for(page_id) for page_id in pages}
