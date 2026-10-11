@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analytic Z-spectra water, CEST - pulsed spin-lock — CEST sources</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html">CEST sources</a>
+  <span class="tag">Chemical Exchange Saturation Transfer</span>
+</header>
+<div class="layout">
+  <nav><a href="index.html">CEST sources</a>
+<a href="analytic_z-spectra-cw-2pool.html">Analytic Z-spectra water, CEST - cw</a>
+<a class="current" href="analytic_z-spectra_-_pulsed_sl.html">Analytic Z-spectra water, CEST - pulsed spin-lock</a>
+<a href="bloch-mcconnell-theory.html">Bloch, Bloch-McConnell, and CEST-Theory</a>
+<a href="bm_sim_fit.html">Bloch-McConnell Simulation &amp; Fit</a>
+<a href="cest_eval.html">CEST data evaluation tool</a>
+<a href="contact.html">Contact</a>
+<a href="b1-correction.html">Correction of B1 inhomogeneity artifacts in CEST images</a>
+<a href="about_github.html">Github</a>
+<a href="glucocest.html">glucoCEST</a>
+<a href="impressum.html">Impressum</a>
+<a href="imprint.html">Imprint</a>
+<a href="cest_intro.html">Introduction in Chemical exchange saturation transfer</a>
+<a href="making_of.html">Making of CEST sources</a>
+<a href="moritz_zaiss.html">Moritz Zaiss, Ph.D.</a>
+<a href="multi-b1-fit-cw.html">Multi-B1 Z-spectra fitting</a>
+<a href="standard_cest_protocols.html">Standard CEST protocols</a>
+<a href="the_reviews.html">The Reviews</a>
+<a href="analytic_z-spectra-cw-3pool.html">Z-spectrum - water, CEST, MT - cw</a></nav>
+  <main>
+    <div class="toc"><div class="toc-title">Table of Contents</div><ul><li class="toc-1"><a href="#analytic-z-spectra-water-cest-pulsed-spin-lock">Analytic Z-spectra  water, CEST - pulsed spin-lock</a></li><li class="toc-1"><a href="#short-documentation">Short Documentation</a></li><li class="toc-2"><a href="#batchzcw">BATCH_Z_cw</a></li><li class="toc-2"><a href="#function-zcw-p">function Z_cw(P)</a></li></ul></div>
+    <article><h1 id="analytic-z-spectra-water-cest-pulsed-spin-lock">Analytic Z-spectra  water, CEST - pulsed spin-lock</h1>
+<p>Here you find analytic solutions of the Bloch-McConnell equations describing Z-spectra under pulsed spin-lock irradiation. This is the R<sub>1ρ</sub>-based <em>ISAR2</em>-model as published in <strong>Roeloffs et al. (2014), NMR Biomed., 28, 40–53, <a class="urlextern" href="http://www.ncbi.nlm.nih.gov/pubmed/25328046">doi: 10.1002/nbm.3192</a>.</strong>. <img src="media/z_plsd_b1.png" alt="" width="300"></p>
+<p>It is a very lean code to give you a tool illustrating the principal behaviour of a CEST effect and its interaction with the direct water saturation.</p>
+<p>Dowload zipped Matlab implementations <a class="urlextern" href="https://github.com/cest-sources/Z-pSL/archive/master.zip">here</a> or find the package on <a class="urlextern" href="https://github.com/cest-sources/Z-pSL">github.com/cest-sources/Z-pSL</a></p>
+<h1 id="short-documentation">Short Documentation</h1>
+<p><span class="video"><iframe width="640" height="480" src="https://www.youtube-nocookie.com/embed/-HqhzBM8zOw" title="Tutorial: 2 minutes for 3 pools" loading="lazy" allowfullscreen></iframe></span></p>
+<h2 id="batchzcw">BATCH_Z_cw</h2>
+<p>First the pool parameters are defined in the parameter struct P:</p>
+<pre class="code matlab"><code>%% SETUP 
+%pool system parameters
+%water pool A
+P.R1A=1/3;          % longitudinalrelaxation rate [s^-1]
+P.R2A=2;            % transversal relaxation rate [s^-1]
+P.dwA=0; %deltaW_A in [ppm]
+
+%CEST pool B
+P.fB=0.001;         % proton fraction: [water protons]/[CEST agent protons]
+P.kBA=200;          % exchange rate [s^-1]
+P.dwB=1.9;          % (chemical shift) deltaW_B in [ppm} 
+P.R2B=30;           % transversal relaxation rate [s^-1]</code></pre>
+<p>Now the CEST sequence parameters are defined</p>
+<pre class="code matlab"><code>% sequence parameters
+P.Zi=1;             % Z initial, in units of thermal M0, Hyperpol.: 10^4                  
+P.FREQ=300;         % [MHz]  I use ppm and µT, therefore gamma=267.5153;
+P.B1=2;             % [µT]
+P.tp=5;             % pulse duration = saturation time [s]
+P.xZspec= [-5:0.1:5]; % ppm</code></pre>
+<p>Now the function Z_cw(P) is called and plotted:</p>
+<pre class="code matlab"><code>figure(32), plot(P.xZspec,Z_cw(P),&#x27;r-&#x27;) ;   hold on;</code></pre>
+<h2 id="function-zcw-p">function Z_cw(P)</h2>
+<p><span class="media"><img src="media/logo_dkfz.png" alt="powered by DKFZ" width="180"><span class="caption">powered by DKFZ</span></span></p></article>
+  </main>
+</div>
+<footer>Static copy of the CEST sources wiki. Pages, text, and pictures only.</footer>
+</body>
+</html>

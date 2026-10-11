@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Correction of B1 inhomogeneity artifacts in CEST images — CEST sources</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html">CEST sources</a>
+  <span class="tag">Chemical Exchange Saturation Transfer</span>
+</header>
+<div class="layout">
+  <nav><a href="index.html">CEST sources</a>
+<a href="analytic_z-spectra-cw-2pool.html">Analytic Z-spectra water, CEST - cw</a>
+<a href="analytic_z-spectra_-_pulsed_sl.html">Analytic Z-spectra water, CEST - pulsed spin-lock</a>
+<a href="bloch-mcconnell-theory.html">Bloch, Bloch-McConnell, and CEST-Theory</a>
+<a href="bm_sim_fit.html">Bloch-McConnell Simulation &amp; Fit</a>
+<a href="cest_eval.html">CEST data evaluation tool</a>
+<a href="contact.html">Contact</a>
+<a class="current" href="b1-correction.html">Correction of B1 inhomogeneity artifacts in CEST images</a>
+<a href="about_github.html">Github</a>
+<a href="glucocest.html">glucoCEST</a>
+<a href="impressum.html">Impressum</a>
+<a href="imprint.html">Imprint</a>
+<a href="cest_intro.html">Introduction in Chemical exchange saturation transfer</a>
+<a href="making_of.html">Making of CEST sources</a>
+<a href="moritz_zaiss.html">Moritz Zaiss, Ph.D.</a>
+<a href="multi-b1-fit-cw.html">Multi-B1 Z-spectra fitting</a>
+<a href="standard_cest_protocols.html">Standard CEST protocols</a>
+<a href="the_reviews.html">The Reviews</a>
+<a href="analytic_z-spectra-cw-3pool.html">Z-spectrum - water, CEST, MT - cw</a></nav>
+  <main>
+    
+    <article><h1 id="correction-of-b1-inhomogeneity-artifacts-in-cest-images">Correction of B1 inhomogeneity artifacts in CEST images</h1>
+<p><img src="media/b1_corr.png" alt="" width="200"> Here you find a B1-correction algorithm as published in <strong>Windschuh et al. (2015), NMR Biomed., 28(5):529-37.  <a class="urlextern" href="http://onlinelibrary.wiley.com/doi/10.1002/nbm.3283/abstract">doi: 10.1002/nbm.3283</a></strong>.</p>
+<p>Dowload zipped Matlab implementations <a class="urlextern" href="https://github.com/cest-sources/B1_correction/archive/master.zip">here</a> or find the package on <a class="urlextern" href="https://github.com/cest-sources/B1_correction/">https://github.com/cest-sources/B1_correction/</a></p>
+<h1 id="tutorial">Tutorial</h1>
+<p>There are two functions, <strong>Z_B1_correction</strong> and <strong>contrast_B1_correction</strong>, which both require data of several CEST acquisitions with different B1. Both reconstruct either Z-spectrum stacks or contrast stacks at the B1 values given by <strong>B1_output</strong>.</p>
+<pre class="code matlab"><code>function [Z_stack_corr] = Z_B1_correction(Z_stack,rel_B1map,B1_input,B1_output,SEGMENT,fit_type,B1_input_index)
+% [Z_stack_corr] = Z_B1_correction(Z_stack,rel_B1map,SEGMENT_2D,B1_input,fit_type,B1_input_index,B1_output)
+% output: B1 corrected Z-stack (5D-stack)
+% input:    Z_stack = 5D-stack of Z-spectra (y,x,z,offset,B1)
+%           rel_B1map = relative B1map
+%           B1_output = output B1 (scalar or vector)
+%           SEGMENT = voxel/pixel mask for evaluation
+%           fit_type = fit or interpolation type
+%           B1_input_index = index vector of B1 samples that should be used
+%           for correction
+%</code></pre>
+<pre class="code matlab"><code>function [corr_img]=contrast_B1_correction(img,rel_B1map,B1_input,B1_output,SEGMENT_2D,fit_type,B1_input_index)
+% [corr_img]=contrast_B1_correction(img,rel_B1map,B1_input,B1_output,SEGMENT_2D,fit_type,B1_input_index)
+% output: B1 corrected images (2D or 3D-stack) (x,y,B1)
+% input:    img = 3D-stack of images (x,y,B1) which are used for B1-correciton
+%           rel_B1map = relative B1map
+%           B1_output = output B1 (scalar or vector)
+%           SEGMENT_2D = pixel mask for evaluation
+%           fit_type = fit or interpolation type
+%           B1_input_index = index vector of B1 samples that should be used
+%           for correction</code></pre>
+<p><span class="media"><img src="media/logo_dkfz.png" alt="powered by DKFZ" width="180"><span class="caption">powered by DKFZ</span></span></p></article>
+  </main>
+</div>
+<footer>Static copy of the CEST sources wiki. Pages, text, and pictures only.</footer>
+</body>
+</html>

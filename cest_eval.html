@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CEST data evaluation tool — CEST sources</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html">CEST sources</a>
+  <span class="tag">Chemical Exchange Saturation Transfer</span>
+</header>
+<div class="layout">
+  <nav><a href="index.html">CEST sources</a>
+<a href="analytic_z-spectra-cw-2pool.html">Analytic Z-spectra water, CEST - cw</a>
+<a href="analytic_z-spectra_-_pulsed_sl.html">Analytic Z-spectra water, CEST - pulsed spin-lock</a>
+<a href="bloch-mcconnell-theory.html">Bloch, Bloch-McConnell, and CEST-Theory</a>
+<a href="bm_sim_fit.html">Bloch-McConnell Simulation &amp; Fit</a>
+<a class="current" href="cest_eval.html">CEST data evaluation tool</a>
+<a href="contact.html">Contact</a>
+<a href="b1-correction.html">Correction of B1 inhomogeneity artifacts in CEST images</a>
+<a href="about_github.html">Github</a>
+<a href="glucocest.html">glucoCEST</a>
+<a href="impressum.html">Impressum</a>
+<a href="imprint.html">Imprint</a>
+<a href="cest_intro.html">Introduction in Chemical exchange saturation transfer</a>
+<a href="making_of.html">Making of CEST sources</a>
+<a href="moritz_zaiss.html">Moritz Zaiss, Ph.D.</a>
+<a href="multi-b1-fit-cw.html">Multi-B1 Z-spectra fitting</a>
+<a href="standard_cest_protocols.html">Standard CEST protocols</a>
+<a href="the_reviews.html">The Reviews</a>
+<a href="analytic_z-spectra-cw-3pool.html">Z-spectrum - water, CEST, MT - cw</a></nav>
+  <main>
+    <div class="toc"><div class="toc-title">Table of Contents</div><ul><li class="toc-1"><a href="#cest-data-evaluation-tool">CEST data evaluation tool</a></li><li class="toc-1"><a href="#tutorial">Tutorial</a></li><li class="toc-2"><a href="#12-basic-z-spectra-evaluation">1/2 Basic Z-spectra evaluation</a></li><li class="toc-2"><a href="#22-lorentzian-fitting-for-isolated-cest-evaluation">2/2 Lorentzian fitting for isolated CEST evaluation</a></li><li class="toc-1"><a href="#alternatives">Alternatives</a></li></ul></div>
+    <article><h1 id="cest-data-evaluation-tool">CEST data evaluation tool</h1>
+<p><img src="media/cest_eval.png" alt="" width="200"> This tool allows you to evaluate CEST MRI data and create CEST images and ROI evaluations from basic contrasts as well as sophisticated multi-Lorentzian fits</p>
+<p>Dowload zipped Matlab implementations <a class="urlextern" href="https://github.com/cest-sources/CEST_EVAL/archive/master.zip">here</a> or find the package on <a class="urlextern" href="https://github.com/cest-sources/CEST_EVAL/">https://github.com/cest-sources/CEST_EVAL/</a></p>
+<h1 id="tutorial">Tutorial</h1>
+<p>These routines allow you to</p>
+<ul><li>import raw data </li><li>Calculate B0 maps from Z-spectra</li><li>B0 correct Z-spectra</li><li>investigate CEST spectra for pixels and ROIs</li><li>calculate contrasts (MTRasym, MTRRex, Lorentzian difference, AREX)</li><li>fit multi-Lorentzian fits to Z-spectra</li></ul>
+<p>MTRRex,AREX: <strong>Zaiss et al. NMR Biomed., 27: 240–252. <a class="urlextern" href="http://onlinelibrary.wiley.com/doi/10.1002/nbm.3054/">doi: 10.1002/nbm.3054</a></strong>.</p>
+<p>Fitting: <strong>Windschuh et al. (2015), NMR Biomed., 28(5):529-37.  <a class="urlextern" href="http://onlinelibrary.wiley.com/doi/10.1002/nbm.3283/abstract">doi: 10.1002/nbm.3283</a></strong>.</p>
+<p>WASABI B1/B0 mapping and correction: <strong>Schuenke et al. (2016), MRM <a class="urlextern" href="http://onlinelibrary.wiley.com/doi/10.1002/mrm.26133/abstract">doi: 10.1002/mrm.26133</a></strong>.</p>
+<h2 id="12-basic-z-spectra-evaluation">1/2 Basic Z-spectra evaluation</h2>
+<p><span class="video"><iframe width="500" height="360" src="https://www.youtube-nocookie.com/embed/4aA1D2A60Og" title="Tutorial: 10 minutes for basic CEST evaluation" loading="lazy" allowfullscreen></iframe></span></p>
+<h2 id="22-lorentzian-fitting-for-isolated-cest-evaluation">2/2 Lorentzian fitting for isolated CEST evaluation</h2>
+<p><span class="video"><iframe width="500" height="360" src="https://www.youtube-nocookie.com/embed/NxCXS5_X3yk" title="Tutorial: 10 minutes for basic CEST evaluation" loading="lazy" allowfullscreen></iframe></span></p>
+<p>There are 4 important inputs:</p>
+<ul><li><strong>M0_stack(x,y,z)</strong> the thermal M0 magnetization, or the normalization image w/o saturation</li><li><strong>Mz_stack(x,y,z,w)</strong> the stack of saturated images at frequency w</li><li><strong>dB0_stack_int(x,y,z)</strong> the internal dB0 map in ppm calculated by the minimum of Mz_stack</li><li><strong>dB0_stack_ext(x,y,z)</strong> an external dB0 map in ppm</li></ul>
+<p>further we need the frequency offset axis, or the omega-axis (w-axis) of the Z-spectrum. It is saved in the parameter struct P under the sequence parameters P.SEQ</p>
+<ul><li><strong>P.SEQ.w</strong></li></ul>
+<p>To calculate the internal B0 map the function MINFIND_SPLINE_3D is called after that the <strong>B0-correction</strong> and <strong>normalization</strong> can be performed and the final stack is</p>
+<ul><li><strong>Z_corrExt</strong>  - the B0-corrected and normalized stack of Z-spectra</li></ul>
+<h1 id="alternatives">Alternatives</h1>
+<h4 id="mitk">MITK</h4>
+<p>The Medical Imaging Interaction Toolkit (MITK) is a free open-source software system for development of interactive medical image processing software. MITK combines the Insight Toolkit (ITK) and the Visualization Toolkit (VTK) with an application framework. As a toolkit, MITK offers those features that are relevant for the development of interactive medical imaging software covered neither by ITK nor VTK, see the Toolkit Features for details. <strong>It recently got an extension for CEST analysis MITK CEST:</strong></p>
+<p><a class="urlextern" href="https://phabricator.mitk.org/w/mitk/cest/cest_user_manual/">https://phabricator.mitk.org/w/mitk/cest/cest_user_manual/</a></p>
+<h4 id="jhu">JHU</h4>
+<p>find the <em>CEST data processing tool</em> of the John Hopkins group here</p>
+<p><a class="urlextern" href="http://godzilla.kennedykrieger.org/CEST/">http://godzilla.kennedykrieger.org/CEST/</a></p>
+<p><span class="media"><img src="media/logo_dkfz.png" alt="powered by DKFZ" width="180"><span class="caption">powered by DKFZ</span></span></p></article>
+  </main>
+</div>
+<footer>Static copy of the CEST sources wiki. Pages, text, and pictures only.</footer>
+</body>
+</html>

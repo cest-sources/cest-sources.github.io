@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Z-spectrum - water, CEST, MT - cw — CEST sources</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html">CEST sources</a>
+  <span class="tag">Chemical Exchange Saturation Transfer</span>
+</header>
+<div class="layout">
+  <nav><a href="index.html">CEST sources</a>
+<a href="analytic_z-spectra-cw-2pool.html">Analytic Z-spectra water, CEST - cw</a>
+<a href="analytic_z-spectra_-_pulsed_sl.html">Analytic Z-spectra water, CEST - pulsed spin-lock</a>
+<a href="bloch-mcconnell-theory.html">Bloch, Bloch-McConnell, and CEST-Theory</a>
+<a href="bm_sim_fit.html">Bloch-McConnell Simulation &amp; Fit</a>
+<a href="cest_eval.html">CEST data evaluation tool</a>
+<a href="contact.html">Contact</a>
+<a href="b1-correction.html">Correction of B1 inhomogeneity artifacts in CEST images</a>
+<a href="about_github.html">Github</a>
+<a href="glucocest.html">glucoCEST</a>
+<a href="impressum.html">Impressum</a>
+<a href="imprint.html">Imprint</a>
+<a href="cest_intro.html">Introduction in Chemical exchange saturation transfer</a>
+<a href="making_of.html">Making of CEST sources</a>
+<a href="moritz_zaiss.html">Moritz Zaiss, Ph.D.</a>
+<a href="multi-b1-fit-cw.html">Multi-B1 Z-spectra fitting</a>
+<a href="standard_cest_protocols.html">Standard CEST protocols</a>
+<a href="the_reviews.html">The Reviews</a>
+<a class="current" href="analytic_z-spectra-cw-3pool.html">Z-spectrum - water, CEST, MT - cw</a></nav>
+  <main>
+    <div class="toc"><div class="toc-title">Table of Contents</div><ul><li class="toc-2"><a href="#z-spectrum-water-cest-mt-cw">Z-spectrum -  water, CEST, MT - cw</a></li><li class="toc-1"><a href="#tutorial">Tutorial</a></li><li class="toc-2"><a href="#batchzcw3pool">BATCH_Z_cw_3pool</a></li></ul></div>
+    <article><h2 id="z-spectrum-water-cest-mt-cw">Z-spectrum -  water, CEST, MT - cw</h2>
+<p>Here you find analytic solutions of the Bloch-McConnell equations describing Z-spectra. This R<sub>1ρ</sub>-model is based on the article <strong>Zaiss et al. A combined analytical solution for chemical exchange saturation transfer and semi-solid magnetization transfer, (2014), NMR Biomed.</strong> <a class="urlextern" href="http://onlinelibrary.wiley.com/doi/10.1002/nbm.3237/full">doi: 10.1002/nbm.3237</a>. <img src="media/z_cw_b1_mt.png" alt="" width="300"></p>
+<p>It is a very lean code to give you a tool illustrating the principal behaviour of a CEST effect and its interaction with the direct water saturation. It is actually the same source code as for the  <a class="wikilink" href="analytic_z-spectra-cw-2pool.html">Solution for 2-pools under cw irradiation</a>. Just the BATCh file is adjusted.</p>
+<p>Dowload zipped Matlab implementations <a class="urlextern" href="https://github.com/cest-sources/Z-cw/archive/master.zip">here</a> or find the package on <a class="urlextern" href="https://github.com/cest-sources/Z-cw">github.com/cest-sources/Z-cw</a></p>
+<h1 id="tutorial">Tutorial</h1>
+<p><span class="video"><iframe width="640" height="480" src="https://www.youtube-nocookie.com/embed/G0wFnHCogGw" title="Tutorial: 2 minutes for 3 pools" loading="lazy" allowfullscreen></iframe></span></p>
+<h2 id="batchzcw3pool">BATCH_Z_cw_3pool</h2>
+<p>For the 3-pool-simulation the 2-pool code must only be extended by the following fields in the struct P.</p>
+<pre class="code matlab"><code>    % % semi-solid MT pool &#x27;c&#x27;
+    P.fC=0.139;               % proton fraction of the semi-solid pool (WM-like)
+    P.kCA=23;                 % exchange rate [s^-1]
+    P.dwC=-2;                 % deltaW_B in [ppm} (chemical shift)
+    P.R2C=1/(9.1*10^-6);      % transversal relaxation rate 1/T2 of pool c [s^-1]
+    P.R1C=1;                  % longitudinal relaxation rate 1/T1 of pool c [s^-1]
+    P.MT_lineshape=&#x27;Lorentzian&#x27;;            % semi-solid Lineshape</code></pre>
+<p>To see the full width of the MT the frequency axis must be extended.</p>
+<pre class="code matlab"><code>% sequence parameters
+P.xZspec= [-150:0.1:150]; % ppm</code></pre>
+<p>Now the function Z_cw(P) is called and plotted.</p>
+<pre class="code matlab"><code>figure(32), plot(P.xZspec,Z_cw(P),&#x27;r-&#x27;) ;   hold on;</code></pre>
+<p><span class="media"><img src="media/logo_dkfz.png" alt="powered by DKFZ" width="180"><span class="caption">powered by DKFZ</span></span></p></article>
+  </main>
+</div>
+<footer>Static copy of the CEST sources wiki. Pages, text, and pictures only.</footer>
+</body>
+</html>

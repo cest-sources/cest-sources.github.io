@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standard CEST protocols — CEST sources</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html">CEST sources</a>
+  <span class="tag">Chemical Exchange Saturation Transfer</span>
+</header>
+<div class="layout">
+  <nav><a href="index.html">CEST sources</a>
+<a href="analytic_z-spectra-cw-2pool.html">Analytic Z-spectra water, CEST - cw</a>
+<a href="analytic_z-spectra_-_pulsed_sl.html">Analytic Z-spectra water, CEST - pulsed spin-lock</a>
+<a href="bloch-mcconnell-theory.html">Bloch, Bloch-McConnell, and CEST-Theory</a>
+<a href="bm_sim_fit.html">Bloch-McConnell Simulation &amp; Fit</a>
+<a href="cest_eval.html">CEST data evaluation tool</a>
+<a href="contact.html">Contact</a>
+<a href="b1-correction.html">Correction of B1 inhomogeneity artifacts in CEST images</a>
+<a href="about_github.html">Github</a>
+<a href="glucocest.html">glucoCEST</a>
+<a href="impressum.html">Impressum</a>
+<a href="imprint.html">Imprint</a>
+<a href="cest_intro.html">Introduction in Chemical exchange saturation transfer</a>
+<a href="making_of.html">Making of CEST sources</a>
+<a href="moritz_zaiss.html">Moritz Zaiss, Ph.D.</a>
+<a href="multi-b1-fit-cw.html">Multi-B1 Z-spectra fitting</a>
+<a class="current" href="standard_cest_protocols.html">Standard CEST protocols</a>
+<a href="the_reviews.html">The Reviews</a>
+<a href="analytic_z-spectra-cw-3pool.html">Z-spectrum - water, CEST, MT - cw</a></nav>
+  <main>
+    <div class="toc"><div class="toc-title">Table of Contents</div><ul><li class="toc-1"><a href="#standard-cest-protocols">Standard CEST protocols</a></li><li class="toc-2"><a href="#3t-apt">3T APT</a></li><li class="toc-3"><a href="#aptw1-apt-weighted-low-dc-tsat-1-8s-glint">APTw_1 : APT-weighted, low DC, t_sat=1.8s (<em>GLINT</em>)</a></li><li class="toc-3"><a href="#aptw2-apt-weighted-low-dc-tsat-0-8s-hdapttrio">APTw_2  : APT-weighted, low DC, t_sat=0.8s (<em>HDAPTTRIO</em>)</a></li><li class="toc-3"><a href="#aptw3-apt-weighted-high-dc-tsat-0-8s-hdapt">APTw_3 : APT-weighted, high DC, t_sat=0.8s (<em>HDAPT</em>)</a></li><li class="toc-2"><a href="#3t-multi-pool-mp-low-power-selective-amide-and-noe-protocols">3T Multi-Pool (MP)  -  low power -  selective amide and NOE protocols</a></li><li class="toc-3"><a href="#mp1-low-dc-glint">MP_1 : low DC (<em>GLINT</em>)</a></li><li class="toc-3"><a href="#mp2-high-dc-hd">MP_2 : high DC (<em>HD</em>)</a></li><li class="toc-2"><a href="#7t-multi-pool-mp-low-power-selective-amide-and-noe-protocols">7T Multi-Pool (MP)  -  low power -  selective amide and NOE protocols</a></li><li class="toc-3"><a href="#mp1-gufi-th2">MP_1 (<em>GUFI TH2</em>)</a></li></ul></div>
+    <article><h1 id="standard-cest-protocols">Standard CEST protocols</h1>
+<p>We want to hint that there is a more detailed and growing site for standard protocols based on pulseq here <a class="urlextern" href="https://github.com/kherz/pulseq-cest">https://github.com/kherz/pulseq-cest</a></p>
+<p>We recommend to follow this site in the future for standardization of protocols.</p>
+<p>below you find the old information, which will at some point be removed for the sake of pulseq-cest.</p>
+<hr>
+<p>B1 definitions here are the flip angle equivalent (pure FA), thus the average B1 of a <strong>single</strong> saturation pulse. This also means that the flip angle of each saturation pulse is directly given by FA = B1·γ·t_p</p>
+<p>t_p  = duration of a single saturation pulse, t_sat = total time of the saturation pulse train</p>
+<hr>
+<h2 id="3t-apt">3T APT</h2>
+<h3 id="aptw1-apt-weighted-low-dc-tsat-1-8s-glint">APTw_1 : APT-weighted, low DC, t_sat=1.8s (<em>GLINT</em>)</h3>
+<ul><li>pulse shape = Gaussian</li><li>B1 = 2.22 µT</li><li>n = 20</li><li>t_p = 50 ms</li><li>t_d = 40 ms  </li><li>=&gt; DC = 0.55 and t_sat = n*(t_p+t_d) = 1.8 s</li><li>T_rec = 2.4/12 s (saturated/M0)</li></ul>
+<p>total acquisition time (depends on the readout) : approximately 3min24s for snapshot-GRE</p>
+<h3 id="aptw2-apt-weighted-low-dc-tsat-0-8s-hdapttrio">APTw_2  : APT-weighted, low DC, t_sat=0.8s (<em>HDAPTTRIO</em>)</h3>
+<ul><li>pulse shape = RECT</li><li>B1 = 2 µT</li><li>n = 5</li><li>t_p = 100 ms</li><li>t_d = 72 ms  </li><li>=&gt; DC = 0.58 and t_sat = n*(t_p+t_d) = 860 ms</li><li>T_rec = 2 s</li><li>measurements= 17</li></ul>
+<p>Δω [ppm] = -300, 4, -3.75, -3.75, -3.5, -3.5, -3.25, -3.25, -3, 3, 3.25, 3.25, 3.5, 3.5 3.75, 3.75, 4</p>
+<h3 id="aptw3-apt-weighted-high-dc-tsat-0-8s-hdapt">APTw_3 : APT-weighted, high DC, t_sat=0.8s (<em>HDAPT</em>)</h3>
+<ul><li>pulse shape = RECT</li><li>B1 = 2 µT</li><li>n = 8</li><li>t_p = 100 ms</li><li>t_d = 5 ms  </li><li>=&gt; DC = 0.95 and t_sat = n*(t_p+t_d) = 840 ms</li><li>T_rec = 2 s</li><li>measurements= 17</li></ul>
+<p>Δω [ppm] = -300, 4, -3.75, -3.75, -3.5, -3.5, -3.25, -3.25, -3, 3, 3.25, 3.25, 3.5, 3.5 3.75, 3.75, 4</p>
+<hr>
+<h2 id="3t-multi-pool-mp-low-power-selective-amide-and-noe-protocols">3T Multi-Pool (MP)  -  low power -  selective amide and NOE protocols</h2>
+<h3 id="mp1-low-dc-glint">MP_1 : low DC (<em>GLINT</em>)</h3>
+<ul><li>pulse shape = Gaussian</li><li>B1 = 0.6 µT (first scan),  B1 = 0.9 µT (second scan)</li><li>n = 80</li><li>t_p = 20.48 ms</li><li>t_d = 20 ms  </li><li>=&gt; DC = 0.5 and t_sat = n*(t_p+t_d) = 3.2 s</li><li>T_rec = 0 ms</li><li>measurements = 54</li></ul>
+<p>Δω [ppm] = [ -300, -100, -50, -40, -30, -20, -10, -9.5, -9,-8.5,-8,-7.5,-7,-6.5,-6,-5.5,-5,-4.5,-4,-3.5,-3,-2.5,-2,-1.5,-1,-0.5,-0.25,0,0.25,0.5,1,1.5,2,2.5,3,3.5,4,4.5,5,5.5,6,6.5,7,7.5, 8,8.5,9,9.5,10,20,30,40,50,100 ]</p>
+<p>total acquisition time (depends on the readout) : approximately 5min20s for snapshot-GRE</p>
+<h3 id="mp2-high-dc-hd">MP_2 : high DC (<em>HD</em>)</h3>
+<ul><li>pulse shape = Gaussian</li><li>B1 = 0.6 µT (first scan),  B1 = 0.9 µT (second scan)</li><li>n = 148</li><li>t_p = 20 ms</li><li>t_d = 5 ms</li><li>=&gt; DC = 0.8 and t_sat = n*(t_p+t_d) = 3.7 s</li><li>T_rec = 0/12 s (saturated/M0)</li><li>measurements = 57</li></ul>
+<p>Δω [ppm] = 250, 200, 150, 110, 80, 60, 45, 35, 28, 22, 17, 13, 10, 7.5, 6, 5, 4.5, 4, 3.5, 3, 2.5, 2, 1.5, 1.2, 0.9, 0.7, 0.5, 0.3, 0, −0.3, −0.5, −0.7, −0.9, −1.2, −1.5, −2, −2.5, −3, −3.5, −4, −4.5, −5, −6, −7.5, −10, −13, −17, −22, −28, −35, −45, −60, −80, −110, −150, −200, −250</p>
+<p>total acquisition time (depends on the readout) : approximately 7min34s per B1 for snapshot-GRE</p>
+<h2 id="7t-multi-pool-mp-low-power-selective-amide-and-noe-protocols">7T Multi-Pool (MP)  -  low power -  selective amide and NOE protocols</h2>
+<h3 id="mp1-gufi-th2">MP_1 (<em>GUFI TH2</em>)</h3>
+<ul><li>pulse shape = Gaussian</li><li>B1 = 0.6 µT (first scan),  B1 = 0.9 µT (second scan)</li><li>n = 120</li><li>t_p = 15ms</li><li>t_d = 10 ms</li><li>=&gt; DC = 0.6 and t_sat = n*(t_p+t_d) = 3.0 s</li><li>T_rec = 0/12 s (saturated/M0)</li><li>measurements = 56</li></ul>
+<p>Δω [ppm] = [-300 -100 -50 -20 -12 -9 -7.25 -6.25 -5.5 -4.7 -4 -3.3 -2.7 -2 -1.7 -1.5 -1.1 -0.9 -0.6 -0.4 0 0.4 0.6 0.95 1.1 1.25 1.4 1.55 1.7 1.85 2 2.15 2.3 2.45 2.6 2.75 2.9 3.05 3.2 3.35 3.5 3.65 3.8 3.95 4.1 4.25 4.4 4.7 5.25 6.25 8 12 20 50 100 -300 ]</p>
+<p>total acquisition time (depends on the readout) : approximately 6:40s per B1 for snapshot-GRE</p></article>
+  </main>
+</div>
+<footer>Static copy of the CEST sources wiki. Pages, text, and pictures only.</footer>
+</body>
+</html>

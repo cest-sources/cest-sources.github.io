@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloch-McConnell Simulation &amp; Fit — CEST sources</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html">CEST sources</a>
+  <span class="tag">Chemical Exchange Saturation Transfer</span>
+</header>
+<div class="layout">
+  <nav><a href="index.html">CEST sources</a>
+<a href="analytic_z-spectra-cw-2pool.html">Analytic Z-spectra water, CEST - cw</a>
+<a href="analytic_z-spectra_-_pulsed_sl.html">Analytic Z-spectra water, CEST - pulsed spin-lock</a>
+<a href="bloch-mcconnell-theory.html">Bloch, Bloch-McConnell, and CEST-Theory</a>
+<a class="current" href="bm_sim_fit.html">Bloch-McConnell Simulation &amp; Fit</a>
+<a href="cest_eval.html">CEST data evaluation tool</a>
+<a href="contact.html">Contact</a>
+<a href="b1-correction.html">Correction of B1 inhomogeneity artifacts in CEST images</a>
+<a href="about_github.html">Github</a>
+<a href="glucocest.html">glucoCEST</a>
+<a href="impressum.html">Impressum</a>
+<a href="imprint.html">Imprint</a>
+<a href="cest_intro.html">Introduction in Chemical exchange saturation transfer</a>
+<a href="making_of.html">Making of CEST sources</a>
+<a href="moritz_zaiss.html">Moritz Zaiss, Ph.D.</a>
+<a href="multi-b1-fit-cw.html">Multi-B1 Z-spectra fitting</a>
+<a href="standard_cest_protocols.html">Standard CEST protocols</a>
+<a href="the_reviews.html">The Reviews</a>
+<a href="analytic_z-spectra-cw-3pool.html">Z-spectrum - water, CEST, MT - cw</a></nav>
+  <main>
+    <div class="toc"><div class="toc-title">Table of Contents</div><ul><li class="toc-1"><a href="#bloch-mcconnell-simulation-fit">Bloch-McConnell Simulation &amp; Fit</a></li><li class="toc-1"><a href="#tutorial">Tutorial</a></li><li class="toc-2"><a href="#bloch-mcconnell-simulation-multi-z-spectra-fit">Bloch McConnell simulation multi-Z-spectra fit</a></li><li class="toc-2"><a href="#acknowledgments">Acknowledgments</a></li></ul></div>
+    <article><h1 id="bloch-mcconnell-simulation-fit">Bloch-McConnell Simulation &amp; Fit</h1>
+<p><img src="media/bm.png" alt="" width="250"></p>
+<p>Here you find a Bloch-McConnell simulation introduced in the publications</p>
+<ul><li><strong>Schmitt et al. (2011), MRM 65: 1620–1629. <a class="urlextern" href="http://onlinelibrary.wiley.com/doi/10.1002/mrm.22750/full">DOI: 10.1002/mrm.22750</a></strong>, </li><li><strong>Roeloffs et al. (2014), NMR Biomed., 28, 40–53 <a class="urlextern" href="http://onlinelibrary.wiley.com/doi/10.1002/nbm.3192/full">doi: 10.1002/nbm.3192</a></strong></li><li><strong>Zaiss et al. (2014), NMR Biomed., 28; 217–230 <a class="urlextern" href="http://onlinelibrary.wiley.com/doi/10.1002/nbm.3237/abstract">doi: 10.1002/nbm.3237</a></strong>, </li><li><strong>Meissner et al. (2015), NMR Biomed., 28, 1196–1208. <a class="urlextern" href="http://onlinelibrary.wiley.com/doi/10.1002/nbm.3362/abstract">doi: 10.1002/nbm.3362</a></strong>, </li></ul>
+<p>It was initially based on the code provided by Shanrong Zhang published in <a class="urlextern" href="http://onlinelibrary.wiley.com/doi/10.1002/mrm.20408/abstract">Woessner, Zhang, Merritt and Sherry: Numerical solution of the Bloch equations provides insights into the optimum design of PARACEST agents for MRI, MRM 2005</a>. It was extended for multiple pools, including semi-solid MT, and also extended for pulsed RF saturation.</p>
+<p>Dowload zipped Matlab implementations <a class="urlextern" href="https://github.com/cest-sources/BM_sim_fit/archive/master.zip">here</a> or find the package on <a class="urlextern" href="https://github.com/cest-sources/BM_sim_fit/">https://github.com/cest-sources/BM_sim_fit/</a></p>
+<h1 id="tutorial">Tutorial</h1>
+<h2 id="bloch-mcconnell-simulation-multi-z-spectra-fit">Bloch McConnell simulation multi-Z-spectra fit</h2>
+<p><span class="video"><iframe width="500" height="360" src="https://www.youtube-nocookie.com/embed/O_DChxR023s" title="Tutorial: BM sim fit" loading="lazy" allowfullscreen></iframe></span></p>
+<p>This code allows for simulation of BM system upon RF presaturation</p>
+<ul><li>multiple pools possible (water, 5 CEST, 1  semisolid MT)</li><li>trains RF pulses with arbitratry pulse shapes possible (gauss, sinc, spin-lock already implemented)</li><li>both analytical (if possible) and full numerical simulation possible</li><li>transient and steady-state possible</li><li>first order readout schemes possible</li><li>Both full Z-spectra and single offset evaluation possible</li><li>Ready for multi parameter simulations</li></ul>
+<p><strong>Read more about usage on github in <a class="urlextern" href="https://github.com/cest-sources/BM_sim_fit/">BM_Documentation.docx and BM_tutorial.pptx</a></strong></p>
+<h2 id="acknowledgments">Acknowledgments</h2>
+<p>This code was created by Moritz Zaiss based on the cw BM simulation and fit code of Shanrong Zhang. A revised version was created with the help of Patrick Schuenke, Christian Meyer, Christian David and Volkert Roeloffs.</p>
+<p><span class="media"><img src="media/wordmark-full.png" alt="powered by GLINT" width="180"><span class="caption">powered by GLINT</span></span></p></article>
+  </main>
+</div>
+<footer>Static copy of the CEST sources wiki. Pages, text, and pictures only.</footer>
+</body>
+</html>

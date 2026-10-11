@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CEST sources — CEST sources</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html">CEST sources</a>
+  <span class="tag">Chemical Exchange Saturation Transfer</span>
+</header>
+<div class="layout">
+  <nav><a class="current" href="index.html">CEST sources</a>
+<a href="analytic_z-spectra-cw-2pool.html">Analytic Z-spectra water, CEST - cw</a>
+<a href="analytic_z-spectra_-_pulsed_sl.html">Analytic Z-spectra water, CEST - pulsed spin-lock</a>
+<a href="bloch-mcconnell-theory.html">Bloch, Bloch-McConnell, and CEST-Theory</a>
+<a href="bm_sim_fit.html">Bloch-McConnell Simulation &amp; Fit</a>
+<a href="cest_eval.html">CEST data evaluation tool</a>
+<a href="contact.html">Contact</a>
+<a href="b1-correction.html">Correction of B1 inhomogeneity artifacts in CEST images</a>
+<a href="about_github.html">Github</a>
+<a href="glucocest.html">glucoCEST</a>
+<a href="impressum.html">Impressum</a>
+<a href="imprint.html">Imprint</a>
+<a href="cest_intro.html">Introduction in Chemical exchange saturation transfer</a>
+<a href="making_of.html">Making of CEST sources</a>
+<a href="moritz_zaiss.html">Moritz Zaiss, Ph.D.</a>
+<a href="multi-b1-fit-cw.html">Multi-B1 Z-spectra fitting</a>
+<a href="standard_cest_protocols.html">Standard CEST protocols</a>
+<a href="the_reviews.html">The Reviews</a>
+<a href="analytic_z-spectra-cw-3pool.html">Z-spectrum - water, CEST, MT - cw</a></nav>
+  <main>
+    <div class="toc"><div class="toc-title">Table of Contents</div><ul><li class="toc-1"><a href="#cest-sources">CEST sources</a></li><li class="toc-3"><a href="#overview">Overview</a></li><li class="toc-2"><a href="#data-evaluation-tools">- Data evaluation tools</a></li><li class="toc-3"><a href="#image-data-preprocessing-normalization-b0-correction-lorentzian-fitting-and-contrast-computation">- Image data preprocessing - Normalization, B0 correction, Lorentzian fitting, and contrast computation</a></li><li class="toc-3"><a href="#z-spectra-b1-correction">- Z-spectra B1-correction</a></li><li class="toc-2"><a href="#analytical-solutions-of-the-bloch-mcconnell-equations">- Analytical solutions of the Bloch-McConnell equations</a></li><li class="toc-2"><a href="#full-numerical-solutions-of-the-bloch-mcconnell-equations">- Full numerical solutions of the Bloch-McConnell equations</a></li><li class="toc-2"><a href="#quantitative-cest">- Quantitative CEST</a></li><li class="toc-2"><a href="#cest-theory">- CEST Theory</a></li><li class="toc-2"><a href="#standard-cest-protocols">- standard CEST protocols</a></li><li class="toc-2"><a href="#literature">- Literature</a></li></ul></div>
+    <article><h1 id="cest-sources">CEST sources</h1>
+<p>Welcome to <em>CEST sources</em>! CEST stands for Chemical Exchange Saturation Transfer, a Magnetic Resonance Imaging (<a class="urlextern" href="http://en.wikipedia.org/wiki/MRI">MRI</a>) technique which promises insight into pathologies on a molecular level. If you want to know more about CEST, find details in the <a class="wikilink" href="cest_intro.html">CEST intro</a> or <a class="wikilink" href="the_reviews.html">the reviews</a>. <em>CEST sources</em> is a project to share code, link resources, and bundle knowledge about CEST. <em>CEST sources</em> is intended for helping researchers and students in the field of CEST and magnetization transfer. Most code is in Matlab but we try to upload other implementations, too.</p>
+<h3 id="overview">Overview</h3>
+<p>Find below the different sections of CEST sources. For now the focus is on Z-spectra evaluation methods, and Z-spectra simulation and fitting. Each subsection contains links to code and video tutorials. All code is kept simple to be easily adjustable for your scientific question. If you have a suggestion for a video tutorial feel free to <a class="urlextern" href="http://www.kyb.tuebingen.mpg.de/nc/de/employee/details/mzaiss.html">contact us</a>.</p>
+<p>Download links to all packages can be found on the github page <a class="urlextern" href="https://github.com/cest-sources">github.com/cest-sources</a>. (<a class="wikilink" href="about_github.html">About github</a>)</p>
+<h2 id="data-evaluation-tools">- Data evaluation tools</h2>
+<h3 id="image-data-preprocessing-normalization-b0-correction-lorentzian-fitting-and-contrast-computation">- Image data preprocessing - Normalization, B0 correction, Lorentzian fitting, and contrast computation</h3>
+<p><img src="media/cest_eval.png" alt="" width="200"> <a class="wikilink" href="cest_eval.html">CEST data evaluation tool</a></p>
+<h3 id="z-spectra-b1-correction">- Z-spectra B1-correction</h3>
+<p><img src="media/b1_corr.png" alt="" width="200"><a class="wikilink" href="b1-correction.html">Correction for B1 inhomogeneity artifacts in CEST images</a></p>
+<h2 id="analytical-solutions-of-the-bloch-mcconnell-equations">- Analytical solutions of the Bloch-McConnell equations</h2>
+<p>Here you find Z-spectrum simulations in the case of a two and three pool systems under continous wave (cw) irradiation. For a two pool system also the solution for pulsed spinlock irradiation is given.</p>
+<p><img src="media/z_cw_b1.png" alt="" width="160"><a class="wikilink" href="analytic_z-spectra-cw-2pool.html">Analytical solution for 2-pools under cw irradiation</a></p>
+<p><img src="media/z_cw_b1_mt.png" alt="" width="160"> <a class="wikilink" href="analytic_z-spectra-cw-3pool.html">Analytical solution for 3-pools under cw irradiation: water, CEST and semi-soild MT</a></p>
+<p><img src="media/z_plsd_b1.png" alt="" width="160"> <a class="wikilink" href="analytic_z-spectra_-_pulsed_sl.html">Analytical solution for 2-pools under pulsed spin-lock irradiation (ISAR2)</a></p>
+<h2 id="full-numerical-solutions-of-the-bloch-mcconnell-equations">- Full numerical solutions of the Bloch-McConnell equations</h2>
+<p><img src="media/bm.png" alt="" width="250"><a class="wikilink" href="bm_sim_fit.html">Full numerical Bloch-McConnell solution</a></p>
+<h2 id="quantitative-cest">- Quantitative CEST</h2>
+<p>Here you find methods for CEST quantification. This means to achieve access to the CEST pool parameters as defined in the Bloch-McConnell equations such as exchange rate, concentration and transverse relaxation of the CEST site.</p>
+<p><img src="media/b1fit.png" alt="" width="160"><a class="wikilink" href="multi-b1-fit-cw.html">CEST quantification by a Multi-B1-fit under cw irradiation - 2 pools</a></p>
+<h2 id="cest-theory">- CEST Theory</h2>
+<p>Here you find some Mupad codes for getting more theoretical insight into the eigenspace solution that forms the analytical CEST solution.</p>
+<p><img src="media/bm.png" alt="" width="250"><a class="wikilink" href="bloch-mcconnell-theory.html">Bloch, Bloch-McConnell, and CEST-Theory</a></p>
+<h2 id="standard-cest-protocols">- standard CEST protocols</h2>
+<p>For reproducible CEST we need to agree on some standard protocols. Find a collection of used sequences here. <a class="wikilink" href="standard_cest_protocols.html">standard CEST protocols</a></p>
+<h2 id="literature">- Literature</h2>
+<p><a class="wikilink" href="cest_intro.html">CEST intro</a></p>
+<p><a class="wikilink" href="the_reviews.html">the reviews</a></p>
+<p><a class="wikilink" href="glucocest.html">glucoCEST</a></p>
+<hr>
+<hr>
+<p><img src="media/logo_dkfz.png" alt="" width="250"> <em>CEST sources</em> was initiated 2014 at the <a class="urlextern" href="http://www.dkfz.de/en/index.html">German Cancer Research Center (DKFZ)</a>, Heidelberg Germany  by the project group CEST imaging.</p>
+<p><img src="media/kyblogo.jpg" alt="" width="100"> <img src="media/wordmark-full.png" alt="" width="150"></p>
+<p>It is now hosted at <a class="urlextern" href="http://www.kyb.tuebingen.mpg.de/nc/employee/details/mzaiss.html">Max Planck Institute for Biological Cybernetics</a>, Tübingen and part of the european <a class="urlextern" href="http://www.eibir.org/projects/h2020-projects/glint/">GLINT project</a>. If you want to publish or link to code here, too, feel free to <a class="urlextern" href="http://www.kyb.tuebingen.mpg.de/nc/employee/details/mzaiss.html">contact us</a>.</p>
+<p><a class="wikilink" href="impressum.html">Impressum</a></p>
+<hr></article>
+  </main>
+</div>
+<footer>Static copy of the CEST sources wiki. Pages, text, and pictures only.</footer>
+</body>
+</html>
