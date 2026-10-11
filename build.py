@@ -368,7 +368,7 @@ def page_template(title: str, toc: str, body: str, nav: str) -> str:
 </head>
 <body>
 <header>
-  <a class="brand" href="index.html">CEST sources</a>
+  <a class="brand" href="index.html"><img src="assets/cest-logo.png" alt="CEST sources"></a>
   <span class="tag">Chemical Exchange Saturation Transfer</span>
 </header>
 <div class="layout">
@@ -378,7 +378,17 @@ def page_template(title: str, toc: str, body: str, nav: str) -> str:
     <article>{body}</article>
   </main>
 </div>
-<footer>Static copy of the CEST sources wiki. Pages, text, and pictures only.</footer>
+<footer>
+  <div class="affiliation">
+    <a class="fau" href="https://www.fau.de/"><img src="assets/fau-logo.svg" alt="FAU — Friedrich-Alexander-Universität Erlangen-Nürnberg"></a>
+    <p>
+      <a href="https://www.uk-erlangen.de/kontakt/visitenkarte/moritz-zaiss-9472/">Prof. Dr. rer. nat. Moritz Zaiss</a><br>
+      Professur für multimodale Bildgebung in der klinischen Forschung<br>
+      Neuroradiologisches Institut, Universitätsklinikum Erlangen<br>
+      Friedrich-Alexander-Universität Erlangen-Nürnberg
+    </p>
+  </div>
+</footer>
 </body>
 </html>
 """
@@ -402,12 +412,15 @@ body {
   font: 15px/1.55 "Segoe UI", "Lucida Grande", Verdana, sans-serif;
 }
 header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   background: #19477a;
   color: #fff;
-  padding: 0.85rem 1.4rem;
+  padding: 0.55rem 1.4rem;
 }
-.brand { color: #fff; font-size: 1.35rem; font-weight: 600; text-decoration: none; }
-.tag { display: block; color: #d5e2f0; font-size: 0.85rem; margin-top: 0.15rem; }
+.brand img { height: 74px; width: auto; display: block; background: #e7f4fb; }
+.tag { color: #d5e2f0; font-size: 0.95rem; }
 .layout { display: flex; align-items: flex-start; gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 1.2rem; }
 nav { width: 320px; flex: none; background: var(--paper); border: 1px solid var(--border); padding: 0.8rem 1rem 0.8rem 0.6rem; }
 nav ul { margin: 0; padding-left: 1.35rem; }
@@ -437,11 +450,18 @@ pre.code { background: #f7f9fa; border: 1px solid var(--border); padding: 0.7rem
 code { font-family: Consolas, "Courier New", monospace; font-size: 0.92em; }
 ul, ol { padding-left: 1.3rem; }
 hr { border: 0; border-top: 1px solid var(--border); }
-footer { color: #888; font-size: 0.82rem; text-align: center; padding: 0.5rem 1rem 1.4rem; }
+footer { background: #fff; border-top: 1px solid var(--border); padding: 1.1rem 1.4rem 1.4rem; }
+.affiliation { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 1.4rem; }
+.affiliation img { height: 54px; width: auto; display: block; }
+.affiliation p { margin: 0; color: #333; font-size: 0.92rem; line-height: 1.45; }
+.affiliation a { color: var(--link); text-decoration: none; }
+.affiliation a:hover { text-decoration: underline; }
 @media (max-width: 800px) {
   .layout { display: block; }
   nav { width: auto; margin-bottom: 1rem; }
   .toc { float: none; width: auto; }
+  .affiliation { display: block; }
+  .affiliation img { margin-bottom: 0.7rem; }
 }
 """
 
