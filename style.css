@@ -22,9 +22,11 @@ header {
 }
 .brand { color: #fff; font-size: 1.35rem; font-weight: 600; text-decoration: none; }
 .tag { display: block; color: #d5e2f0; font-size: 0.85rem; margin-top: 0.15rem; }
-.layout { display: flex; align-items: flex-start; gap: 1.5rem; max-width: 1100px; margin: 0 auto; padding: 1.2rem; }
-nav { width: 230px; flex: none; background: var(--paper); border: 1px solid var(--border); padding: 0.8rem 1rem; }
-nav a { display: block; color: var(--wiki); text-decoration: none; padding: 0.15rem 0; }
+.layout { display: flex; align-items: flex-start; gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 1.2rem; }
+nav { width: 320px; flex: none; background: var(--paper); border: 1px solid var(--border); padding: 0.8rem 1rem 0.8rem 0.6rem; }
+nav ul { margin: 0; padding-left: 1.35rem; }
+nav li { margin: 0.28rem 0; }
+nav a { color: var(--wiki); text-decoration: none; }
 nav a:hover, nav a.current { text-decoration: underline; }
 nav a.current { font-weight: 600; }
 main { flex: 1; min-width: 0; background: var(--paper); border: 1px solid var(--border); padding: 1rem 1.4rem 2rem; }

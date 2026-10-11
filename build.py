@@ -44,6 +44,37 @@ def load_pages() -> dict[str, str]:
     return pages
 
 
+TIER1 = 2
+TIER_FORMATS = ["%s.", "%s.%d", "%s.%d.%d", "%s.%d.%d.%d", "%s.%d.%d.%d.%d"]
+
+
+def heading_marker(title: str) -> tuple[int, str]:
+    match = re.match(r"^(-+)\s+(.*)$", title.strip())
+    if not match:
+        return 0, title.strip()
+    return len(match.group(1)), match.group(2).strip()
+
+
+class HeadingNumbers:
+    """Same scheme as the DokuWiki numberedheadings plugin, tier 1 = heading level 2."""
+
+    def __init__(self) -> None:
+        self.counts = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+
+    def next(self, level: int) -> str:
+        self.counts[level] = self.counts.get(level, 0) + 1
+        for deeper in range(level + 1, 6):
+            self.counts[deeper] = 0
+        tier = level - TIER1 + 1
+        if tier < 1:
+            return ""
+        values = [self.counts[i] for i in range(1, 6)]
+        picked = values[max(0, TIER1 - 1) : max(0, TIER1 - 1) + tier]
+        if tier <= len(TIER_FORMATS):
+            return TIER_FORMATS[tier - 1] % tuple(picked)
+        return ".".join(str(number) for number in picked)
+
+
 def pretty_name(page_id: str) -> str:
     if page_id == "glucocest":
         return "glucoCEST"
@@ -163,17 +194,21 @@ class Renderer:
         used: dict[str, int] = {}
         rendered: list[str] = []
         toc: list[tuple[int, str, str]] = []
+        numbers = HeadingNumbers()
         for kind, body in blocks:
             if kind[:1] == "h" and kind[1:].isdigit():
                 level = int(kind[1])
-                plain = re.sub(r"\{\{.*?\}\}|\[\[.*?\]\]", "", body)
+                dashes, clean = heading_marker(body)
+                shown = f"{numbers.next(level)} {clean}".strip() if dashes == 1 else clean
+                plain = re.sub(r"\{\{.*?\}\}|\[\[.*?\]\]", "", clean)
                 plain = re.sub(r"[\[\]{}*/_']", "", plain)
                 base = re.sub(r"[^a-z0-9]+", "-", plain.lower()).strip("-") or "section"
                 used[base] = used.get(base, 0) + 1
                 anchor = base if used[base] == 1 else f"{base}-{used[base]}"
+                label = self.inline(shown)
                 if level <= 3:
-                    toc.append((level, anchor, self.inline(body)))
-                rendered.append(f'<h{level} id="{anchor}">{self.inline(body)}</h{level}>')
+                    toc.append((level, anchor, label))
+                rendered.append(f'<h{level} id="{anchor}">{label}</h{level}>')
             else:
                 rendered.append(body)
         toc_html = ""
@@ -373,9 +408,11 @@ header {
 }
 .brand { color: #fff; font-size: 1.35rem; font-weight: 600; text-decoration: none; }
 .tag { display: block; color: #d5e2f0; font-size: 0.85rem; margin-top: 0.15rem; }
-.layout { display: flex; align-items: flex-start; gap: 1.5rem; max-width: 1100px; margin: 0 auto; padding: 1.2rem; }
-nav { width: 230px; flex: none; background: var(--paper); border: 1px solid var(--border); padding: 0.8rem 1rem; }
-nav a { display: block; color: var(--wiki); text-decoration: none; padding: 0.15rem 0; }
+.layout { display: flex; align-items: flex-start; gap: 1.5rem; max-width: 1200px; margin: 0 auto; padding: 1.2rem; }
+nav { width: 320px; flex: none; background: var(--paper); border: 1px solid var(--border); padding: 0.8rem 1rem 0.8rem 0.6rem; }
+nav ul { margin: 0; padding-left: 1.35rem; }
+nav li { margin: 0.28rem 0; }
+nav a { color: var(--wiki); text-decoration: none; }
 nav a:hover, nav a.current { text-decoration: underline; }
 nav a.current { font-weight: 600; }
 main { flex: 1; min-width: 0; background: var(--paper); border: 1px solid var(--border); padding: 1rem 1.4rem 2rem; }
@@ -430,8 +467,8 @@ def main() -> None:
         links = []
         for other in nav_ids:
             current = ' class="current"' if other == page_id else ""
-            links.append(f"<a{current} href=\"{href_for(other)}\">{html.escape(rendered[other][0])}</a>")
-        html_page = page_template(title, toc, body, "\n".join(links))
+            links.append(f"<li><a{current} href=\"{href_for(other)}\">{html.escape(rendered[other][0])}</a></li>")
+        html_page = page_template(title, toc, body, "<ul>\n" + "\n".join(links) + "\n</ul>")
         (OUT / href_for(page_id)).write_text(html_page, encoding="utf-8")
 
     targets = {href_for(page_id) for page_id in pages}
