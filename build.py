@@ -378,17 +378,6 @@ def page_template(title: str, toc: str, body: str) -> str:
     <article>{body}</article>
   </main>
 </div>
-<footer>
-  <div class="affiliation">
-    <a class="fau" href="https://www.fau.de/"><img src="assets/fau-logo.svg" alt="FAU — Friedrich-Alexander-Universität Erlangen-Nürnberg"></a>
-    <p>
-      <a href="https://www.uk-erlangen.de/kontakt/visitenkarte/moritz-zaiss-9472/">Prof. Dr. rer. nat. Moritz Zaiss</a><br>
-      Professur für multimodale Bildgebung in der klinischen Forschung<br>
-      Neuroradiologisches Institut, Universitätsklinikum Erlangen<br>
-      Friedrich-Alexander-Universität Erlangen-Nürnberg
-    </p>
-  </div>
-</footer>
 </body>
 </html>
 """
@@ -446,16 +435,8 @@ pre.code { background: #f7f9fa; border: 1px solid var(--border); padding: 0.7rem
 code { font-family: Consolas, "Courier New", monospace; font-size: 0.92em; }
 ul, ol { padding-left: 1.3rem; }
 hr { border: 0; border-top: 1px solid var(--border); }
-footer { background: #fff; border-top: 1px solid var(--border); padding: 1.1rem 1.4rem 1.4rem; }
-.affiliation { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 1.4rem; }
-.affiliation img { height: 54px; width: auto; display: block; }
-.affiliation p { margin: 0; color: #333; font-size: 0.92rem; line-height: 1.45; }
-.affiliation a { color: var(--link); text-decoration: none; }
-.affiliation a:hover { text-decoration: underline; }
 @media (max-width: 800px) {
   .toc { float: none; width: auto; }
-  .affiliation { display: block; }
-  .affiliation img { margin-bottom: 0.7rem; }
 }
 """
 
